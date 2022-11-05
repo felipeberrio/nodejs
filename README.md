@@ -50,4 +50,32 @@ import ejs from 'ejs'
 app.set('view engine', 'ejs') // Modulo que permite extender el HTML
 Para establecer el motor de vistas o plantillas, aquellos que nos permite extender el HTML y crear lógica de programación en HTML y enviado al navegador
 10. Express tiene integración con EJS por defecto por lo tanto podemos eliminar la importación de ejs escrita anteriormente: import ejs from 'ejs'
+11. Creamos una carpeta views para las vistas del frontend y un archivo index.ejs con una primeta etiqueta <h1>Hello World</h1>
+12. Cambiamos en index.js: app.get('/',(req,res)=>res.send('hello world'))  por 
+app.get('/',(req,res)=>res.render('index.ejs')) 
+no es necesario poner .ejs porque ya sabe que todos los archivos que reciben son ejs por: app.set('view engine','ejs') // Modulo que permite extender el HTML
+app.get('/',(req,res)=>res.render('index')) 
+13. Establecemos la carpeta views para indicar donde encuentra los archivos de vistas el archivo index mediante una ruta dinamica creando un Dir Name (Nombre de directorio)
+app.set('views', (RUTA ABSOLUTA))
+14. Importamos los siguientes modulos para no tener que usar una ruta absoluta y ejecutamos la función
+import {dirname} from path // Importamos dirname del modulo path de Node para no tener que escribir rutas absolutas
+import {fileURLToPath} from url // Importamos esta funcion fileURLToPAth del modulo url
+const dirname(fileURLToPath(import.meta.url)) // Ejecutamos dirname pasandole otra función del modulo Url para que se transforme en una ruta absoluta y lo guardamos en una constante
+15. Comprobamos que con este nuevo codigo llegamos a la ubicación del proyecto
+console.log(__dirname) // Vemos en consola la dirección actual del proyecto
+RTA: C:\Users\pipe_\Documents\GitHub\nodejs\src
+16. Cuando usamos Mac o Linux, las rutas de direcciones son con / pero en windows \ . 
+Por lo que importamos import {dirname, join} form 'path'
+17. Si vemos en console.log podemos ver la ruta que creamos
+console.log(join(__dirname,'views')) // Vemos en consola la dirección actual del proyecto
+18. Listo, vamos al navegdor ruta localhost:3000 y podemos ver el archivo index.ejs con el hello world entre las etiquetas h1
+19. En el archivo index.ejs introducimos toda la estructura html5 y en el body agregamos el hola munda
 
+### Enrutador
+
+1. Vamos a definir todas las páginas de nuestra aplicación
+2. En nuestra aplicación index.js conectamos las nuevas páginas 
+app.get('/',(req,res)=>res.render('index')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo index.ejs
+app.get('/about',(req,res)=>res.render('about')) // Módulo que permite obtener en la ruta /about una respuesta donde renderiza el archivo about.ejs
+app.get('/contact',(req,res)=>res.render('contact')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo contact.ejs
+3. En la carpeta views: creamos las páginas nuevas como archivos about.ejs y contact.ejs
