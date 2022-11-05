@@ -116,7 +116,7 @@ index.ejs
     <h1>Hello World <%= x %></h1>
 Mensaje: Hello World Ejemplo
 
-### EJS, TEMPLATE ENGINE
+### EJS, TEMPLATE ENGINE para conectar las diferentes páginas con código reciclado
 
 1. Vamos a conectar las diferentes páginas del frontend con ejs, y para eso creamos una carpeta PARTIALS en views y un documento llamado navigation.ejs
 2. Dentro de navigation creamos un Nav (Div de barra de navegación) y en este una lista no ordenada (UL) de items separados de la lista (li) con un boton al home
@@ -142,4 +142,31 @@ Mensaje: Hello World Ejemplo
 
 ### Estilos con CSS & Bootstrap
 
-1. Agregar estilos con Bootstrap
+Podemos agregar nuestros propios estilos o usar un framework de CSS, usemos la primera
+1. Agregar la carpeta donde estaran nuestros estilos, o stetic files, o styles, o public en express, y dentro de esta vamos a agregar nuestro main.css
+2. Dentro de main agregamos nuestro primer estilo que será de fondo
+body{
+    background: #000;
+    color: white;
+}
+3. Ahora conectamos este nuevo documento de estilos a nuestra app desde index.js 
+app.use(express.static(join(__dirname, 'public'))) // Usamos el archivo de estilos como propiedad de express su metodo llamado static que necesita la carpeta public para leer como root, pero para llegar a la ruta vamos usar dirname que ya creamos que se ubica jsto en ../src/ que es la ruta que partimos para llegar a public
+4. Ya que nuestro servidor permite leer y llegar hasta nuestro main.css, vamos a agregarlo a las vistas para que se aplique
+    <link rel="stylesheet" href="/main.css"> <!-- La ruta del main.css viene desde el servidor / por eso no es solo el nombre del archivo ya que no esta en la misma carpeta de este documento -->
+5. Ya que se puede volver muy amplio la cantidad de codigo por las conexiónes etiqueta link de estilos si agregamos despues bootstrap o alguna otra bibiloteca de estilos podemos crear un partials para reciclar codigo y hacerlo menor ya que este debe repetirse en cada una de las diferentes vistas, creamos un nuevo archivo en partials llamado head.ejs y agregamos el codigo a reciclar
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/main.css"> <!-- La ruta del main.css viene desde el servidor / por eso no es solo el nombre del archivo ya que no esta en la misma carpeta de este documento -->
+6. Agregamos la conexión entre el index.ejs vista con el head.ejs de estilos desde el header
+<%- include('partials/head') %>
+7. Inclumos la misma linea de codigo de conexión de estilos a las demás vistas
+8. Ahora que toda la app comparte estilos vamos a agregar una biblioteca de estilos de bootstrap incluyendo el codigo de bootstrap 5 de la pagina web de css en nuestra head.ejs
+<!-- Bootstrap 5 CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+9. Borramos la info que tenemos en main.css ya que no la vamos a necesitar
+10. Buscamos un estilo de navegador en bootstrap que nos guste en la documentación, y copiamos el código en nuestro documento de navigation.ejs y modificamos donde diga los valores de cada una de las navegaciones, agregamos en adición a las propiedades de la etiquetas que necesitemos
+11. Modificamos el contenido de las diferentes vistas en index.ejs agregando primero un logo
+12. Creamos la carpeta img en public para guardar el logo y css para el main.css
+13. Actualizamos en nuestro head.ejs de estilos nuestras rutas del main.css
+
+14. 55.51 video

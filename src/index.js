@@ -8,9 +8,11 @@ const app = express(); // Creamos la aplicación apartir del modulo express y la
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // Ejecutamos dirname pasandole otra función del modulo Url para que se transforme en una ruta absoluta y lo guardamos en una constante
 
-app.set("views", join(__dirname, "views")); // Utilizamos el metodo join para establecer la ruta de la carpeta de las views
+app.set("views", join(__dirname, 'views')); // Utilizamos el metodo join para establecer la ruta de la carpeta de las views
 app.set("view engine", "ejs"); // Modulo que permite extender el HTML
-app.use(indexRoutes); // Usamos el archivo exportado por la ruta deseada
+app.use(indexRoutes); // Usamos el archivo importado de indexRoutes por la ruta deseada del frontend
+
+app.use(express.static(join(__dirname, 'public'))) // Usamos el archivo de estilos como propiedad de express su metodo llamado static que necesita la carpeta public para leer como root, pero para llegar a la ruta vamos usar dirname que ya creamos que se ubica jsto en ../src/ que es la ruta que partimos para llegar a public
 
 app.listen(3000); // Módulo para escuchar el puerto 3000
 console.log("Server is listening on port", 3000); // Mensaje en consola para efectivamente revisar que estemos escuchando el puerto 3000

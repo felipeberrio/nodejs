@@ -5,10 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>  <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para UTILIZAR el valor de title (gracias al igual) del index.js de routes pasando un dato desde el backend al frontend -->
+    <%- include('partials/head') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el head de estilos de la carpeta partials (gracias al guion) un archivo desde el backend al frontend -->
 </head>
 <body>
-    <%- include('partials/navigation') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el navegador de la carpeta partials (gracias al guion) un dato desde el backend al frontend -->
-    <h1>Hello</h1>
-    <%- include('partials/footer') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el footer de la carpeta partials (gracias al guion) un dato desde el backend al frontend -->
+    <%- include('partials/navigation') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el navegador de la carpeta partials (gracias al guion) un archivo desde el backend al frontend -->
+
+<!-- Main Content -->
+<header class="container vh-100 d-flex justify-content-center align-items-center">  <!-- Container para que se puede centrar-->
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="/img/logo.png" class="w-50" alt="">
+        <h1 class="display-1 my-5 text-uppercase fw-bold">Felipe Berrio</h1>
+        <a href="/about" class="btn btn-primary w-25">About</a>
+    </div>
+</header>
+
+    <%- include('partials/footer') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el footer de la carpeta partials (gracias al guion) un archivo desde el backend al frontend -->
 </body>
 </html>
