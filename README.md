@@ -71,7 +71,7 @@ console.log(join(__dirname,'views')) // Vemos en consola la dirección actual de
 18. Listo, vamos al navegdor ruta localhost:3000 y podemos ver el archivo index.ejs con el hello world entre las etiquetas h1
 19. En el archivo index.ejs introducimos toda la estructura html5 y en el body agregamos el hola munda
 
-### Enrutador
+### Enrutador de las diferentes Express Routes
 
 1. Vamos a definir todas las páginas de nuestra aplicación
 2. En nuestra aplicación index.js conectamos las nuevas páginas 
@@ -118,4 +118,28 @@ Mensaje: Hello World Ejemplo
 
 ### EJS, TEMPLATE ENGINE
 
-1. Vamos a conectar las diferentes páginas del frontend con ejs,
+1. Vamos a conectar las diferentes páginas del frontend con ejs, y para eso creamos una carpeta PARTIALS en views y un documento llamado navigation.ejs
+2. Dentro de navigation creamos un Nav (Div de barra de navegación) y en este una lista no ordenada (UL) de items separados de la lista (li) con un boton al home
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+    </ul>
+</nav>
+3. Ya creado nuestro navegador lo vamos a importar en las vistas de la aplicación con ejs la palabra include asi que en el body del index.ejs agregamos
+    <%- include('partials/navigation') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el navegador de la carpeta partials (gracias al guion) un dato desde el backend al frontend -->
+4. Agregamos la misma etiqueta a las demas vistas de about y contact
+5. Ya que podemos reutilizar código (PARTIALS), como lo es el navegador, podemos recrearlo en los diferentes divs como son el footeer o una tarjeta especial o reutilizar en general porciones de código
+6. Mejoramos los enlaces de navegación a las demás paginas
+7. Agregamos un nuevo archivo a partials, el footer y le damos sus etiquetas de footer y un texto cualquiera
+<footer>
+    <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem, illum.</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, eum, incidunt ipsum architecto assumenda dolorum tempora natus, optio laboriosam ipsam distinctio explicabo ratione quasi laudantium! Delectus fuga ut neque quasi rem laudantium quas nemo commodi harum error quia sint aliquam doloremque necessitatibus sunt nobis, voluptate dolor nisi qui unde. Reiciendis quas consequatur, laborum maiores corporis, debitis beatae veritatis porro odio, iure pariatur nulla. Blanditiis, voluptatibus dolorem! Maiores nulla ducimus maxime, molestias quas est eaque? Quisquam, minima. Aliquam aspernatur, excepturi obcaecati sunt iusto est, hic facere beatae dolorem neque magnam enim consequatur soluta inventore doloremque voluptas. Ad dolorem dignissimos harum eligendi!</p>
+</footer>
+8. Incluimos el footer en index.ejs de la vista y las demás vistas
+<%- include('partials/footer') %> <!-- Lenguaje propio de ejs para dar la propiedad extra a HTML tipo Js para EJECUTAR la funcion include propia de ejs que trae el footer de la carpeta partials (gracias al guion) un dato desde el backend al frontend -->
+
+### Estilos con CSS & Bootstrap
+
+1. Agregar estilos con Bootstrap
