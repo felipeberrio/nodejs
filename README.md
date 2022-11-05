@@ -78,4 +78,25 @@ console.log(join(__dirname,'views')) // Vemos en consola la dirección actual de
 app.get('/',(req,res)=>res.render('index')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo index.ejs
 app.get('/about',(req,res)=>res.render('about')) // Módulo que permite obtener en la ruta /about una respuesta donde renderiza el archivo about.ejs
 app.get('/contact',(req,res)=>res.render('contact')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo contact.ejs
-3. En la carpeta views: creamos las páginas nuevas como archivos about.ejs y contact.ejs
+3. En la carpeta views: creamos las páginas nuevas como archivos about.ejs y contact.ejs y agregamos algún texto para verificar las rutas
+4. verificamos las rutas en localhost:3000/about y localhost:3000/contact
+5. Dado que las rutas que se crean puede llegar a convertirse en un archivo muy extenso, creamos una carpeta en src/routes y un archivo index.js donde agregaremos estas rutas
+app.get('/',(req,res)=>res.render('index')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo index.ejs
+app.get('/about',(req,res)=>res.render('about')) // Módulo que permite obtener en la ruta /about una respuesta donde renderiza el archivo about.ejs
+app.get('/contact',(req,res)=>res.render('contact')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo contact.ejs
+Tenemos que solucionar el problema que en este nuevo archivo index.js no tenemos ni la constante app ni las extenciones
+6. Para separar una porcion de la aplicación, utilizaremos la función Router del módulo de express, la importamos y aplicamos una constante que valga esta función
+import {Router} from 'express'
+const router = router()
+7.Cambiamos app por router
+router.get('/',(req,res)=>res.render('index')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo index.ejs
+router.get('/about',(req,res)=>res.render('about')) // Módulo que permite obtener en la ruta /about una respuesta donde renderiza el archivo about.ejs
+router.get('/contact',(req,res)=>res.render('contact')) // Módulo que permite obtener en la ruta / una respuesta donde renderiza el archivo contact.ejs
+para comenzar a usar este router lugar de app, funcionaria en remplazo: es cambiar un nombre por otro para darnos a entender que esta no es toda la aplicación app sino que es solo una parte UN ENRUTADOR hacia la app.
+8. Finalmente para utilizar el router en la app, vamos a exportar el router por defecto
+export default router // Exportamos el valor del router para que pueda ser importado en la app (index.js)
+9. Vamos a formatearlo para que VScode agregue . ; o lo que haga falta
+f1 para los comandos de VScode y buscamos: Format Document
+10. Importamos nuestro index.js de router dentro del index.js de la app
+import indexRouter from './routes/index.js' // Importamos de la ruta de los routers lo que exporta por defecto, el indexRouter (puede tener cualquier nombre) que es el router que exporta por defecto y lo llamamos indexRouter
+11. Vamos a usar el indexRouter que importamos anteriormente
