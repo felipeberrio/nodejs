@@ -169,4 +169,7 @@ app.use(express.static(join(__dirname, 'public'))) // Usamos el archivo de estil
 12. Creamos la carpeta img en public para guardar el logo y css para el main.css
 13. Actualizamos en nuestro head.ejs de estilos nuestras rutas del main.css
 
-14. 55.51 video
+14. Agregamos tambien el codigo de Js para funcionar los botones del header entre otros
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+ ### Despliegue en Heroku
