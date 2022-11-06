@@ -170,6 +170,24 @@ app.use(express.static(join(__dirname, 'public'))) // Usamos el archivo de estil
 13. Actualizamos en nuestro head.ejs de estilos nuestras rutas del main.css
 
 14. Agregamos tambien el codigo de Js para funcionar los botones del header entre otros
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
- ### Despliegue en Heroku
+### Despliegue en Heroku
+
+Heroku es un servicio que se encarga de desplegar nuestra aplicación y se encarga de generar todas las configuraciones y necesario para poder hacer funcionar el sitio en producción, cómo no tenemos bases de datos en este proyecto podemos hacerlo gratuitamente en https://www.heroku.com/
+1. Nos registramos y creamos un nuevo proyecto en heroku
+2. Vamos a instalar heroku con la documentación - Install the Heroku CLI con descargable
+3. Comprobamos en el cmd que tengamos: heroku --version
+4. Nos logeamos en heroku via cmd terminal de vscode con: heroku login
+5. Enlazamos nuestra aplicación a heroku con el codigo que nos da la pagina de heroku al crear el nuevo proyecto: heroku git:remote -a felipeberrio-nodejs
+6. Subimos nuestra aplicación a heroku con el codigo que nos da la pagina de heroku al crear el nuevo proyecto (todo esto cuando ya tengamos commits realizados): git push heroku main
+7. Una vez subida, vamos al link de la app que aparece en terminal https://felipeberrio-nodejs.herokuapp.com/ y veremos que aún no podemos entrar a la app, usaremos el codigo de error en cmd que nos aparece: heroku logs --tail
+8. Dice Missing script: "start - osea no se encuentra el script start, crearlo como el scrpt dev: no necesito nodemon porque no vamos a reinciar el código por lo que solo ponemos node así en el package.json:  "start":"node src/index.js"
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+"dev": "nodemon src/index.js",
+"start":"node src/index.js"
+},
+9. Heroku nos va a dar el puerto que puede ser otro 4000 o 3080 o otro, entonces arreglamos la conexión al puerto: en index.js de la app
+app.listen(process.env.PORT || 3000); // Módulo para escuchar el puerto 3000 y una variable de entorno (dada por el sistema operativo) process.env.PORT para ver el puerto que nos da la maquina, y si no da nada (||) pues usa el 3000
+console.log("Server is listening on port", process.env.PORT || 3000);

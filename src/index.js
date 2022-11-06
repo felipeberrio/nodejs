@@ -14,5 +14,5 @@ app.use(indexRoutes); // Usamos el archivo importado de indexRoutes por la ruta 
 
 app.use(express.static(join(__dirname, 'public'))) // Usamos el archivo de estilos como propiedad de express su metodo llamado static que necesita la carpeta public para leer como root, pero para llegar a la ruta vamos usar dirname que ya creamos que se ubica jsto en ../src/ que es la ruta que partimos para llegar a public
 
-app.listen(3000); // Módulo para escuchar el puerto 3000
-console.log("Server is listening on port", 3000); // Mensaje en consola para efectivamente revisar que estemos escuchando el puerto 3000
+app.listen(process.env.PORT || 3000); // Módulo para escuchar el puerto 3000 y una variable de entorno (dada por el sistema operativo) process.env.PORT para ver el puerto que nos da la maquina, y si no da nada (||) pues usa el 3000
+console.log("Server is listening on port", process.env.PORT || 3000); // Mensaje en consola para efectivamente revisar que estemos escuchando el puerto 3000
